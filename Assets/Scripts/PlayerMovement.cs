@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float xMovement = 0f;
     private enum MovementState { Idle, Running, Jump, Falling }
+    [SerializeField] private AudioSource jumpSoundEffect;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(rigidbody.velocity.x, jumpPower);
+            jumpSoundEffect.Play();
         }
         UpdateAnimation();
     }

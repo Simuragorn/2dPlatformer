@@ -5,6 +5,7 @@ public class PlayerLife : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody2D rigidbody;
+    [SerializeField] private AudioSource deathSoundEffect;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,9 +23,10 @@ public class PlayerLife : MonoBehaviour
     {
         animator.SetBool("death", true);
         rigidbody.bodyType = RigidbodyType2D.Static;
+        deathSoundEffect.Play();
     }
 
-    private void ResetLevel()
+    public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
